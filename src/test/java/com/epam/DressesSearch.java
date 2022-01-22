@@ -18,7 +18,7 @@ public class DressesSearch {
         driver.get("http://automationpractice.com/index.php");
 
         driver.findElement(By.xpath("//form/input[contains (@class, 'search_query')]")).sendKeys("dresses");
-        driver.findElement(By.xpath("//button[@name='submit_search' ]")).click();
+        driver.findElement(By.xpath("//button[@name='submit_search']")).click();
         String dressTitle = driver.findElement(By.xpath("//ul[contains (@class, 'product_list')]/li/div[@class='product-container']/div/h5/a")).getText();
         driver.findElement(By.xpath("//ul[contains (@class, 'product_list')]/li/div[@class='product-container']")).click();
         Assertions.assertEquals(driver.findElement(By.xpath("//div/div[@class='columns-container']/div/div[@class='row']/div[@id='center_column']/div/div/div/h1")).getText(), dressTitle);
