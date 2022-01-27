@@ -13,7 +13,7 @@ public class MobileDeHomePage {
     By carMake = By.xpath("//select[@id='qsmakeBuy']/option[@value='25200']");
     By carModel = By.xpath("//select[@id='qsmodelBuy']/option[@value='54']");
     By carPrice = By.xpath("//div[@id='qsprcwrp']/div/select/option[@value='50000']");
-    By carRegistrationFrom = By.xpath("//div[@id='qsfrgwrp']/div/select/option[@value='2020']");
+    By carRegistrationDateFrom = By.xpath("//div[@id='qsfrgwrp']/div/select/option[@value='2020']");
     By carSearchButton = By.xpath("//button[@id='qssub']");
     By searchResults = By.xpath("//h1[@data-testid='result-list-headline']");
 
@@ -21,21 +21,24 @@ public class MobileDeHomePage {
         this.driver = driver;
     }
 
-    void getCookiesAccepted() {
+    void acceptCookies() {
         driver.findElement(homePageCookies).click();
     }
 
-    void setEnglishLanguage() {
+    void setLanguageToEnglish() {
         driver.findElement(languageToggle).click();
         driver.findElement(englishLanguageButton).click();
     }
 
-    void searchForaCar() {
+    void setSearchedCarParameters() {
         driver.findElement(carMake).click();
         driver.manage().timeouts().implicitlyWait(13, TimeUnit.SECONDS);
         driver.findElement(carModel).click();
         driver.findElement(carPrice).click();
-        driver.findElement(carRegistrationFrom).click();
+        driver.findElement(carRegistrationDateFrom).click();
+    }
+
+    void searchForACar() {
         driver.findElement(carSearchButton).click();
     }
 }

@@ -19,7 +19,7 @@ public class MobileDeSearchResultsPage {
         this.driver = driver;
     }
 
-    boolean searchResultsIsDisplayed() {
+    boolean isSearchResultsDisplayed() {
         return driver.findElement(searchResults).isDisplayed();
     }
 
@@ -27,7 +27,7 @@ public class MobileDeSearchResultsPage {
         driver.findElement(sortPriceLowToHigh).click();
     }
 
-    boolean searchResultsSortCheck() {
+    boolean isSearchResultsSorted() {
         searchedResultCarsPrices = driver.findElements(resultsOffersPrices);
         firstAdvertisedCarPrice = Integer.parseInt(searchedResultCarsPrices.get(1).getText().replace(",", "").substring(1, 6));
         int secondAdvertisedCarPrice = Integer.parseInt(searchedResultCarsPrices.get(2).getText().replace(",", "").substring(1, 6));
@@ -39,7 +39,7 @@ public class MobileDeSearchResultsPage {
 
     }
 
-    void getLowestPriceOffer() {
+    void selectLowestPriceOffer() {
         searchedResultCarsPrices.get(1).click();
     }
 

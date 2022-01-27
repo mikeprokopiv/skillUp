@@ -30,17 +30,20 @@ public class CarParkTest {
         mobileDeHomePage = new MobileDeHomePage(driver);
         mobileDeSearchResultsPage = new MobileDeSearchResultsPage(driver);
         lowestPriceCarPage = new LowestPriceCarPage(driver);
-        mobileDeHomePage.getCookiesAccepted();
-        mobileDeHomePage.setEnglishLanguage();
-        mobileDeHomePage.searchForaCar();
-        assertTrue(mobileDeSearchResultsPage.searchResultsIsDisplayed());
+
+        mobileDeHomePage.acceptCookies();
+        mobileDeHomePage.setLanguageToEnglish();
+        mobileDeHomePage.setSearchedCarParameters();
+        mobileDeHomePage.searchForACar();
+        assertTrue(mobileDeSearchResultsPage.isSearchResultsDisplayed());
         mobileDeSearchResultsPage.sortResultsFromLowToHighPrice();
-        assertTrue(mobileDeSearchResultsPage.searchResultsSortCheck());
-        mobileDeSearchResultsPage.getLowestPriceOffer();
-        assertTrue(lowestPriceCarPage.technicalSpecificationIsDisplayed());
-        assertTrue(lowestPriceCarPage.parkCar());
-        lowestPriceCarPage.goToCarPark();
-        assertTrue(lowestPriceCarPage.offerIsParked());
+        assertTrue(mobileDeSearchResultsPage.isSearchResultsSorted());
+        mobileDeSearchResultsPage.selectLowestPriceOffer();
+        assertTrue(lowestPriceCarPage.isTechnicalSpecificationDisplayed());
+        lowestPriceCarPage.parkCar();
+        assertTrue(lowestPriceCarPage.isCarParked());
+        lowestPriceCarPage.navigateToCarParkPage();
+        assertTrue(lowestPriceCarPage.isOfferParked());
     }
 
 

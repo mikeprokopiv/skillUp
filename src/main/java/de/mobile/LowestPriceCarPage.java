@@ -16,21 +16,24 @@ public class LowestPriceCarPage {
         this.driver = driver;
     }
 
-    boolean technicalSpecificationIsDisplayed() {
+    boolean isTechnicalSpecificationDisplayed() {
         return driver.findElement(technicalSpecification).isDisplayed();
     }
 
-    boolean parkCar() {
+    void parkCar() {
         driver.findElement(parkOfferButton).click();
+    }
+
+    boolean isCarParked() {
         return Objects.equals(driver.findElement(By.xpath("//span[@class='header-meta-action-counter']")).getText(), "(1)");
 
     }
 
-    void goToCarPark() {
+    void navigateToCarParkPage() {
         driver.findElement(carPark).click();
     }
 
-    boolean offerIsParked() {
+    boolean isOfferParked() {
         return Integer.parseInt(driver.findElement(currentParkedCarPrice).getText().replace(",", "").substring(1, 6)) == MobileDeSearchResultsPage.firstAdvertisedCarPrice;
     }
 }
