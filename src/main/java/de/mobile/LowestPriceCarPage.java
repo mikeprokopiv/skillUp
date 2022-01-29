@@ -9,7 +9,7 @@ public class LowestPriceCarPage {
     WebDriver driver;
     By technicalSpecification = By.xpath("//div[@id='td-box']");
     By parkOfferButton = By.xpath("//span[@id='park-link-top']");
-    By carPark = By.xpath("//a[@id='hdmysc2']");
+    By carParkButton = By.xpath("//a[@id='hdmysc2']");
     By currentParkedCarPrice = By.xpath("//div[@class='parking__currentPrice']");
 
     public LowestPriceCarPage(WebDriver driver) {
@@ -20,19 +20,21 @@ public class LowestPriceCarPage {
         return driver.findElement(technicalSpecification).isDisplayed();
     }
 
-    void parkCar() {
+    void addOfferToParkCar() {
         driver.findElement(parkOfferButton).click();
     }
 
+    //TODO remove hardcode
     boolean isCarParked() {
         return Objects.equals(driver.findElement(By.xpath("//span[@class='header-meta-action-counter']")).getText(), "(1)");
 
     }
 
     void navigateToCarParkPage() {
-        driver.findElement(carPark).click();
+        driver.findElement(carParkButton).click();
     }
 
+    //TODO remove reference to static element, better to use word or create a separate class for global variable values
     boolean isOfferParked() {
         return Integer.parseInt(driver.findElement(currentParkedCarPrice).getText().replace(",", "").substring(1, 6)) == MobileDeSearchResultsPage.firstAdvertisedCarPrice;
     }
