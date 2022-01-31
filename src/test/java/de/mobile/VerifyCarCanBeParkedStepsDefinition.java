@@ -42,25 +42,25 @@ public class VerifyCarCanBeParkedStepsDefinition {
     @Then("Car Make is set to {string}")
     public void car_make_is_set_to(String string) {
         mobileDeHomePage.setCarMake();
-//        assertEquals("Volkswagen", mobileDeHomePage.getCarMake());
+        assertEquals("Volkswagen", mobileDeHomePage.getCarMake());
     }
 
     @Then("Car Model is set to {string}")
     public void car_model_is_set_to(String string) {
         mobileDeHomePage.setCarModel();
-//        assertEquals("Tiguan", mobileDeHomePage.getCarModel());
+        assertEquals("Tiguan", mobileDeHomePage.getCarModel());
     }
 
     @Then("Car Price is set up to {int} EUR")
     public void car_price_is_set_up_to_eur(Integer int1) {
         mobileDeHomePage.setCarPrice();
-//        assertEquals("50000", mobileDeHomePage.getCarPrice());
+        assertEquals("50000", mobileDeHomePage.getCarPrice());
     }
 
     @Then("Can Registration Date is from {int}")
     public void can_registration_date_is_from(Integer int1) {
         mobileDeHomePage.setCarRegistrationDateFrom();
-//        assertEquals("2020", mobileDeHomePage.getCarRegistrationDateFrom());
+        assertEquals("2020", mobileDeHomePage.getCarRegistrationDateFrom());
     }
 
     @Then("user clicks {string} button")
