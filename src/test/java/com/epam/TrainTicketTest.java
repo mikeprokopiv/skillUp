@@ -31,6 +31,9 @@ public class TrainTicketTest {
         //1. Open http://sbb.ch website
         driver.get("https://www.sbb.ch/");
         driver.manage().window().maximize();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*/button[@id='onetrust-accept-btn-handler']")).click();
+
 
         //2. Search for an inland train connection in the future(e.g. Zurich-Geneva tomorrow)
         driver.findElement(By.xpath("//div[@class='mod_textfield mod_timetable_input_form_gpsinput']/div[@class='mod_textfield_container']/input[@id='fromField']")).sendKeys("Zürich HB");
