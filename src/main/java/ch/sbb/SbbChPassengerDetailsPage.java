@@ -16,6 +16,7 @@ public class SbbChPassengerDetailsPage {
     By discountCalculationsDone = By.xpath("//*/div[contains(@style, 'display: none;') and @id='j_idt1264_blocker']");
     By discountOptionsDropdown = By.xpath("//button[contains(@id, 'abonnement')]/span[@class='mod_multiselect_icon']");
     By noDiscountOption = By.xpath("//div[@aria-hidden='false']/div/div/input[@value='KEINE']");
+    By halfTaxOption = By.xpath("//div/div/div/input[@value='HTA123']");
     By acceptPassengerButton = By.xpath("//button[@id='buttonAcceptPassenger']");
 
     public SbbChPassengerDetailsPage(WebDriver driver) {
@@ -62,5 +63,13 @@ public class SbbChPassengerDetailsPage {
 
     void acceptPassenger() {
         driver.findElement(acceptPassengerButton).click();
+    }
+
+    void setDiscountOptionToHalfTax() {
+        driver.findElement(passengerBirthDateInputField).click();
+        driver.findElement(passengerBirthDateInputField).sendKeys(Keys.TAB);
+        setWaitForDiscountCalculation();
+        driver.findElement(discountOptionsDropdown).click();
+        driver.findElement(halfTaxOption).click();
     }
 }
