@@ -15,23 +15,36 @@ public class SbbChHomePage {
         this.driver = driver;
     }
 
+    void navigateToSbbSite() {
+        driver.manage().window().maximize();
+        driver.get("https://www.sbb.ch/");
+    }
+
     void acceptCookies() {
         driver.findElement(acceptCookiesButton).click();
     }
 
-    void setDepartureStation(String departureStation) {
-        driver.findElement(departureStationInputField).sendKeys(departureStation);
+    void setDepartureStation() {
+        driver.findElement(departureStationInputField).sendKeys("Zürich HB");
     }
 
-    void setArrivalStationStation(String arrivalStation) {
-        driver.findElement(arrivalStationInputField).sendKeys(arrivalStation);
+    void setArrivalStationStation() {
+        driver.findElement(arrivalStationInputField).sendKeys("Genève");
+    }
+
+    String getDepartureStation() {
+        return driver.findElement(departureStationInputField).getText();
+    }
+
+    String getArrivalStationStation() {
+        return driver.findElement(arrivalStationInputField).getText();
     }
 
     void setTravelDateToNextDay() {
         driver.findElement(datePickerNextDayButton).click();
     }
 
-    void clickCarSearchButton() {
+    void clickConnectionSearchButton() {
         driver.findElement(searchButton).click();
     }
 

@@ -31,24 +31,24 @@ public class SbbChPassengerDetailsPage {
         return driver.findElement(passengerNameInputField).getText();
     }
 
-    void setPassengerName(String passengerName) {
-        driver.findElement(passengerNameInputField).sendKeys(passengerName);
+    void setPassengerName() {
+        driver.findElement(passengerNameInputField).sendKeys("John");
     }
 
     String getPassengerSurname() {
         return driver.findElement(passengerSurnameInputField).getText();
     }
 
-    void setPassengerSurname(String passengerSurname) {
-        driver.findElement(passengerSurnameInputField).sendKeys(passengerSurname);
+    void setPassengerSurname() {
+        driver.findElement(passengerSurnameInputField).sendKeys("Smith");
     }
 
     String getPassengerBirthDate() {
         return driver.findElement(passengerBirthDateInputField).getText();
     }
 
-    void setPassengerBirthDate(String passengerBirthDate) {
-        driver.findElement(passengerBirthDateInputField).sendKeys(passengerBirthDate);
+    void setPassengerBirthDate() {
+        driver.findElement(passengerBirthDateInputField).sendKeys("01.01.2004");
         driver.findElement(passengerBirthDateInputField).sendKeys(Keys.TAB);
     }
 
@@ -71,5 +71,9 @@ public class SbbChPassengerDetailsPage {
         setWaitForDiscountCalculation();
         driver.findElement(discountOptionsDropdown).click();
         driver.findElement(halfTaxOption).click();
+    }
+
+    String getDiscountOptionChosen(){
+        return driver.findElement(halfTaxOption).getText();
     }
 }

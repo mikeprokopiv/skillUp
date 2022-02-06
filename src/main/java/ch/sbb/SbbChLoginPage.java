@@ -18,6 +18,7 @@ public class SbbChLoginPage {
     void waitForLoginPageToLoad() {
         wait.until(ExpectedConditions.textToBe(loginPageHeader, "Anmelden und profitieren."));
     }
+
     void loginAsGuest() {
         driver.findElement(loginAsGuestButton);
     }

@@ -16,12 +16,12 @@ public class SbbChSearchResultPage {
         this.driver = driver;
     }
 
-    String getDepartureTime(int searchResultOptionNumber) {
-        return driver.findElements(departureTime).get(searchResultOptionNumber).getText();
+    String getDepartureTime() {
+        return driver.findElements(departureTime).get(1).getText();
     }
 
-    String getArrivalTime(int searchResultOptionNumber) {
-        return driver.findElements(arrivalTime).get(searchResultOptionNumber).getText();
+    String getArrivalTime() {
+        return driver.findElements(arrivalTime).get(1).getText();
     }
 
     List<WebElement> getSearchResultsOption() {
