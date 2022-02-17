@@ -1,13 +1,13 @@
 package models;
 
-public class Tags {
+public class Tag {
     private int id;
     private String name;
 
-    public Tags() {
+    public Tag() {
     }
 
-    public Tags(int id, String name) {
+    public Tag(int id, String name) {
         setId(id);
         setName(name);
     }
@@ -26,5 +26,13 @@ public class Tags {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

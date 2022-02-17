@@ -1,20 +1,20 @@
 package models;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Pet {
     private int id;
     private Category category;
     private String name;
     private String[] photoUrls;
-    private Tags[] tags;
+    private Tag[] tags;
     private String status;
 
-
-    //default constructor
     public Pet() {
     }
 
-    //constructor for put request
-    public Pet(int id, Category category, String name, String[] photoUrls, Tags[] tags, String status) {
+    public Pet(int id, Category category, String name, String[] photoUrls, Tag[] tags, String status) {
         setId(id);
         setCategory(category);
         setName(name);
@@ -23,8 +23,6 @@ public class Pet {
         setStatus(status);
     }
 
-
-    //getters and setters for each body parameter
     public int getId() {
         return id;
     }
@@ -57,11 +55,11 @@ public class Pet {
         this.photoUrls = photoUrls;
     }
 
-    public Tags[] getTags() {
+    public Tag[] getTags() {
         return tags;
     }
 
-    public void setTags(Tags[] tags) {
+    public void setTags(Tag[] tags) {
         this.tags = tags;
     }
 
@@ -71,5 +69,17 @@ public class Pet {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "id=" + id +
+                ", category=" + category +
+                ", name='" + name + '\'' +
+                ", photoUrls=" + Arrays.toString(photoUrls) +
+                ", tags=" + Arrays.toString(tags) +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
