@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Pet {
     private int id;
-    private Category[] category;
+    private Category category;
     private String name;
     private String[] photoUrls;
     private Tag[] tags;
@@ -13,7 +13,7 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(int id, Category[] category, String name, String[] photoUrls, Tag[] tags, String status) {
+    public Pet(int id, Category category, String name, String[] photoUrls, Tag[] tags, String status) {
         setId(id);
         setCategory(category);
         setName(name);
@@ -30,11 +30,11 @@ public class Pet {
         this.id = id;
     }
 
-    public Category[] getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category[] category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -69,6 +69,7 @@ public class Pet {
     public void setStatus(String status) {
         this.status = status;
     }
+
 
     @Override
     public String toString() {
