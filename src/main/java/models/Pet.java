@@ -3,7 +3,7 @@ package models;
 import java.util.Arrays;
 
 public class Pet {
-    private int id;
+    private long id;
     private Category category;
     private String name;
     private String[] photoUrls;
@@ -13,7 +13,7 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(int id, Category category, String name, String[] photoUrls, Tag[] tags, String status) {
+    public Pet(long id, Category category, String name, String[] photoUrls, Tag[] tags, String status) {
         setId(id);
         setCategory(category);
         setName(name);
@@ -22,11 +22,9 @@ public class Pet {
         setStatus(status);
     }
 
-    public int getId() {
-        return id;
-    }
+    public long getId() {return id;}
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

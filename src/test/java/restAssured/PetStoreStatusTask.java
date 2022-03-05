@@ -9,6 +9,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -54,7 +55,7 @@ public class PetStoreStatusTask {
         assertThat().
                 contentType("application/json").
                 statusCode(200).
-                body("id", equalTo(newPet.getId())).
+                body("id", equalTo((int)newPet.getId())).
                 body("category.size()", equalTo(2)).
                 body("category.id", equalTo(newPet.getCategory().getId())).
                 body("category.name", equalTo(newPet.getCategory().getName())).
@@ -66,16 +67,23 @@ public class PetStoreStatusTask {
                 body("status", equalTo(newPet.getStatus()));
     }
 
-    @Test
-    public void getAllPendingPets() {
-        Pet [] PendingPetList =
-                given().
+    @Test(dataProvider = "petSpices")
+    public void getAllPendingPets(Pet expectedPet) {
+        boolean petWasFound = false;
+        Pet[] pendingPetList= given().
                         contentType(ContentType.JSON).
                         queryParam("status", "pending").
                 when().
                         get(BASE_URL + "/pet/findByStatus?status=pending").
-                        as((Type) Pet.class);
-        assertTrue(ArrayUtils.contains(PendingPetList, "Ferret"));
+                        as((Type) Pet[].class);
+
+        for (Pet pet : pendingPetList) {
+            if (expectedPet.getId() == (pet.getId())) {
+                petWasFound = true;
+                break;
+            }
+        }
+        assertTrue(petWasFound);
         ;
     }
 }

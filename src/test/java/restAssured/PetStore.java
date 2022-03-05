@@ -88,7 +88,7 @@ public class PetStore {
         assertThat().
                 contentType("application/json").
                 statusCode(200).
-                body("id", equalTo(newPet.getId())).
+                body("id", equalTo((int)newPet.getId())).
                 body("category.size()", equalTo(2)).
                 body("category.id", equalTo(newPet.getCategory().getId())).
                 body("category.name", equalTo(newPet.getCategory().getName())).
