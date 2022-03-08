@@ -57,47 +57,28 @@ public class PetStoreUpdateTask {
                 body("status", equalTo(newPet.getStatus()));
     }
 
-    @Test(dataProvider = "petSpices")
-    public void updatePet(Pet expectedPet) {
-
-        String updateName= """
-                {
-                    "name": "Diplodocus"
-                }""";
-
-
-//        String updateName = """
-//                {
-//                  "id": 7852555,
-//                  "category": {
-//                    "id": 0,
-//                    "name": "string"
-//                  },
-//                  "name": "Diplodocus",
-//                  "photoUrls": [
-//                    "string"
-//                  ],
-//                  "tags": [
-//                    {
-//                      "id": 0,
-//                      "name": "string"
-//                    }
-//                  ],
-//                  "status": "available"
-//                }""";
-        given().
+  //This code is not working
+    @Test
+    public void updatePet() {
+                Pet updatedPet = new Pet(
+                                        7852255,
+                                        new Category(1, "Imaginary"),
+                                        "Diplodocus",
+                                        new String[]{"https://www.myImage1.jpg"},
+                                        new Tag[]{new Tag(3, "Tale"),new Tag(4, "Movie"),new Tag(5, "Cheesy")} ,
+                                        "available"
+                                        );
+                given().
                         contentType(ContentType.JSON).
-                        body(updateName).
-               when().
-                        put(BASE_URL + "/pet/"+ expectedPet.getId()).
-               then().
+                        body(updatedPet).
+                when().
+                        put(BASE_URL + "/pet/"+ 7852555).
+                then().
                         log().body().
-               assertThat().
+                assertThat().
                         contentType("application/json").
                         statusCode(200).
-                        body("id", equalTo((int)expectedPet.getId())).
-                        body("name", equalTo("dupa"));
-//                        as(Pet.class);
-//        assertEquals(expectedPet.toString(), actualPet.toString());
+                        body("id", equalTo(7852555)).
+                        body("name", equalTo("Diplodocus"));
     }
 }
