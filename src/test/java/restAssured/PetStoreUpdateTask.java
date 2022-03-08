@@ -1,44 +1,34 @@
 package restAssured;
 
 import io.restassured.http.ContentType;
+import io.restassured.mapper.ObjectMapperType;
 import models.Category;
 import models.Pet;
 import models.Tag;
-import org.apache.commons.lang.ArrayUtils;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Type;
-import java.util.Arrays;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class PetStoreStatusTask {
+public class PetStoreUpdateTask {
     String BASE_URL = "https://petstore.swagger.io/v2";
 
     @DataProvider(name = "petSpices")
     public Object[][] getDataFromDataProvider() {
         return new Object[][]{
                 {new Pet(
-                        785228555,
+                        7852555,
                         new Category(1, "Cat1"),
-                        "Ferret",
+                        "Brontosaurus",
                         new String[]{"https://www.myImage1.jpg"},
                         new Tag[]{new Tag(3, "Tale"),new Tag(4, "Movie"),new Tag(5, "Cheesy")} ,
                         "pending"
                         )
-                },
-                {new Pet(
-                        58978878,
-                        new Category(11, "Cool"),
-                        "Parrot",
-                        new String[]{"https://www.myImage2.jpg"},
-                        new Tag[]{new Tag(23, "Cat2")} ,
-                        "pending"
-                )
                 }
                             } ;
         }
@@ -68,21 +58,46 @@ public class PetStoreStatusTask {
     }
 
     @Test(dataProvider = "petSpices")
-    public void getAllPendingPets(Pet expectedPet) {
-        boolean petWasFound = false;
-        Pet[] pendingPetList= given().
-                        contentType(ContentType.JSON).
-                        queryParam("status", "pending").
-                when().
-                        get(BASE_URL + "/pet/findByStatus?status=pending").
-                        as((Type) Pet[].class);
+    public void updatePet(Pet expectedPet) {
 
-        for (Pet pet : pendingPetList) {
-            if (expectedPet.getId() == (pet.getId())) {
-                petWasFound = true;
-                break;
-            }
-        }
-        assertTrue(petWasFound);
+        String updateName= """
+                {
+                    "name": "Diplodocus"
+                }""";
+
+
+//        String updateName = """
+//                {
+//                  "id": 7852555,
+//                  "category": {
+//                    "id": 0,
+//                    "name": "string"
+//                  },
+//                  "name": "Diplodocus",
+//                  "photoUrls": [
+//                    "string"
+//                  ],
+//                  "tags": [
+//                    {
+//                      "id": 0,
+//                      "name": "string"
+//                    }
+//                  ],
+//                  "status": "available"
+//                }""";
+        given().
+                        contentType(ContentType.JSON).
+                        body(updateName).
+               when().
+                        put(BASE_URL + "/pet/"+ expectedPet.getId()).
+               then().
+                        log().body().
+               assertThat().
+                        contentType("application/json").
+                        statusCode(200).
+                        body("id", equalTo((int)expectedPet.getId())).
+                        body("name", equalTo("dupa"));
+//                        as(Pet.class);
+//        assertEquals(expectedPet.toString(), actualPet.toString());
     }
 }
