@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Arrays;
+
 public class Pet {
     private long id;
     private Category category;
@@ -64,5 +66,17 @@ public class Pet {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "id=" + id +
+                ", category=" + category +
+                ", name='" + name + '\'' +
+                ", photoUrls=" + Arrays.toString(photoUrls) +
+                ", tags=" + Arrays.toString(tags) +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
