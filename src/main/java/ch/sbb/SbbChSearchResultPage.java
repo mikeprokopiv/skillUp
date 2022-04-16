@@ -7,10 +7,10 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class SbbChSearchResultPage {
-    WebDriver driver;
-    By searchedResultsGrid = By.xpath("//button[contains(@class, 'mod_timetable_buy_button')]");
-    By departureTime = By.xpath("//*/div[@class='mod_timetable_starttime']/span");
-    By arrivalTime = By.xpath("//*/div[@class='mod_timetable_endtime']/span");
+    private final WebDriver driver;
+    private final By searchedResultsGrid = By.xpath("//button[contains(@class, 'mod_timetable_buy_button')]");
+    private final By departureTime = By.xpath("//*/div[@class='mod_timetable_starttime']/span");
+    private final By arrivalTime = By.xpath("//*/div[@class='mod_timetable_endtime']/span");
 
     public SbbChSearchResultPage(WebDriver driver) {
         this.driver = driver;

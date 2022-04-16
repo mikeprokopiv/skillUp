@@ -2,23 +2,21 @@ package ch.sbb;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class SbbChTripSummaryPage {
-    WebDriver driver;
-    WebDriverWait wait = new WebDriverWait(driver, 60);
-    By priceWithoutDiscount = By.xpath("//*/li/p[@class='mod_dates_summation_box_ticket_price']");
-    By editPassengerButton = By.xpath("//*/button[@id='buttonEditPassenger']");
-    By getDepartureStation = By.xpath("//*/h1/span[contains (@class, 'origin_destination')]");
-    By getArrivalStation = By.xpath("//*/h1/span[contains (@class, 'target_destination')]");
-    By tripsTomorrowsDate = By.xpath("//*/li/p[contains(@class, 'ticket_date')]");
-    By getTripsDepartureTime = By.xpath("//*/li/p[contains(@class, 'ticket_date')]");
-    By getTripsArrivalTime = By.xpath("//*/li/p[contains(@class, 'ticket_validity')]");
-    By getTripsPassengerNameAndSurname = By.xpath("//*/div/ol[contains(@class,'travelers_list')]");
-    By getTaxOption = By.xpath("//*/span[@class='traveler_discounts']");
+    private final WebDriver driver;
+    private final By priceWithoutDiscount = By.xpath("//*/li/p[@class='mod_dates_summation_box_ticket_price']");
+    private final By editPassengerButton = By.xpath("//*/button[@id='buttonEditPassenger']");
+    private final By getDepartureStation = By.xpath("//*/h1/span[contains (@class, 'origin_destination')]");
+    private final By getArrivalStation = By.xpath("//*/h1/span[contains (@class, 'target_destination')]");
+    private final By tripsTomorrowsDate = By.xpath("//*/li/p[contains(@class, 'ticket_date')]");
+    private final By getTripsDepartureTime = By.xpath("//*/li/p[contains(@class, 'ticket_date')]");
+    private final By getTripsArrivalTime = By.xpath("//*/li/p[contains(@class, 'ticket_validity')]");
+    private final By getTripsPassengerNameAndSurname = By.xpath("//*/div/ol[contains(@class,'travelers_list')]");
+    private final By getTaxOption = By.xpath("//*/span[@class='traveler_discounts']");
 
     public SbbChTripSummaryPage(WebDriver driver) {
         this.driver = driver;

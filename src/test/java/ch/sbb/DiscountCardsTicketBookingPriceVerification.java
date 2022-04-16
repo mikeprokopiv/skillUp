@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class DiscountCardsTicketBookingPriceVerification {
     WebDriver driver;
+    WebDriverWait wait;
     SbbChHomePage sbbChHomePage;
     SbbChSearchResultPage sbbChSearchResultPage;
     SbbChPassengerDetailsPage sbbChPassengerDetailsPage;
@@ -20,15 +21,22 @@ public class DiscountCardsTicketBookingPriceVerification {
 
     @Before
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
-        WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        System.setProperty("webdriver.chrome.driver", "chromedriver99.exe");
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, 60);
+
     }
 
     @Test
-    public void verifyCarWithLowestPriceCanBeParked() {
-        sbbChHomePage.navigateToSbbSite();
+    public void verifyTicketBookingFlow() throws InterruptedException {
+        sbbChHomePage = new SbbChHomePage(driver);
+        sbbChSearchResultPage = new SbbChSearchResultPage(driver);
+        sbbChPassengerDetailsPage = new SbbChPassengerDetailsPage(driver);
+        sbbChTripSummaryPage = new SbbChTripSummaryPage(driver);
+        sbbChLoginPage = new SbbChLoginPage(driver);
+
         sbbChHomePage.acceptCookies();
+        sbbChHomePage.navigateToSbbSite();
         sbbChHomePage.setDepartureStation();
         sbbChHomePage.setArrivalStationStation();
         sbbChHomePage.setTravelDateToNextDay();
@@ -38,10 +46,14 @@ public class DiscountCardsTicketBookingPriceVerification {
         sbbChSearchResultPage.getArrivalTime();
         sbbChSearchResultPage.getSearchResultsOption().get(1).click();
 
-        sbbChLoginPage.waitForLoginPageToLoad();
+        Thread.sleep(2000);
+
+//        sbbChLoginPage.waitForLoginPageToLoad();
         sbbChLoginPage.loginAsGuest();
 
-        sbbChPassengerDetailsPage.setWaitForPassengerPageToBeLoaded();
+//        sbbChPassengerDetailsPage.setWaitForPassengerPageToBeLoaded();
+        Thread.sleep(2000);
+
         sbbChPassengerDetailsPage.setPassengerName();
         assertEquals("John", sbbChPassengerDetailsPage.getPassengerName());
         sbbChPassengerDetailsPage.setPassengerSurname();
@@ -51,13 +63,13 @@ public class DiscountCardsTicketBookingPriceVerification {
         sbbChPassengerDetailsPage.setWaitForDiscountCalculation();
         sbbChPassengerDetailsPage.setDiscountOptionToNone();
         sbbChPassengerDetailsPage.acceptPassenger();
-//        Thread.sleep(2000);
+        Thread.sleep(2000);
         sbbChTripSummaryPage.priceWithoutDiscount();
         sbbChTripSummaryPage.editPassengerData();
-//        Thread.sleep(1000);
+        Thread.sleep(1000);
         sbbChPassengerDetailsPage.setDiscountOptionToHalfTax();
         sbbChPassengerDetailsPage.acceptPassenger();
-//        Thread.sleep(2000);
+        Thread.sleep(2000);
         sbbChTripSummaryPage.priceWithDiscount();
 
         Assertions.assertEquals(sbbChHomePage.getDepartureStation(), sbbChTripSummaryPage.getTripsDepartureStation());
