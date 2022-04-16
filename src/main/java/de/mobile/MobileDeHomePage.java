@@ -34,15 +34,22 @@ public class MobileDeHomePage {
         driver.findElement(englishLanguageButton).click();
     }
 
-    String pageHeaderText() {
-        return driver.findElement(englishPageHeader).getText().substring(0,37);
+    String pageHeaderText() {return driver.findElement(englishPageHeader).getText().substring(0, 37);}
+
+    void setCarMake() {
+        driver.findElement(carMake).click();
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
 
-    void setSearchedCarParameters() {
-        driver.findElement(carMake).click();
-        driver.manage().timeouts().implicitlyWait(13, TimeUnit.SECONDS);
+    void setCarModel() {
         driver.findElement(carModel).click();
+    }
+
+    void setCarPrice() {
         driver.findElement(carPrice).click();
+    }
+
+    void setCarRegistrationDateFrom() {
         driver.findElement(carRegistrationDateFrom).click();
     }
 
@@ -50,18 +57,11 @@ public class MobileDeHomePage {
         return driver.findElement(getCarMake).getText();
     }
 
-    String getCarModel() {
-        return driver.findElement(getCarModel).getText();
-    }
+    String getCarModel() {return driver.findElement(getCarModel).getText();}
 
-    String getCarPrice() {
-        return driver.findElement(getCarPrice).getText();
-    }
+    String getCarPrice() {return driver.findElement(getCarPrice).getText();}
 
-    String getCarRegistrationDateFrom() {
-        return driver.findElement(getCarRegistrationDateFrom).getText();
-    }
-
+    String getCarRegistrationDateFrom() {return driver.findElement(getCarRegistrationDateFrom).getText();}
 
     void clickCarSearchButton() {
         driver.findElement(carSearchButton).click();

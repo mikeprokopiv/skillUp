@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-
 public class CarParkTest {
 
     WebDriver driver;
@@ -25,7 +24,6 @@ public class CarParkTest {
         driver.manage().window().maximize();
     }
 
-
     @Test
     public void verifyCarWithLowestPriceCanBeParked() {
         mobileDeHomePage = new MobileDeHomePage(driver);
@@ -35,10 +33,13 @@ public class CarParkTest {
         mobileDeHomePage.acceptCookies();
         mobileDeHomePage.setLanguageToEnglish();
         assertEquals("Germany's biggest vehicle marketplace", mobileDeHomePage.pageHeaderText());
-        mobileDeHomePage.setSearchedCarParameters();
+        mobileDeHomePage.setCarMake();
         assertEquals("Volkswagen", mobileDeHomePage.getCarMake());
+        mobileDeHomePage.setCarModel();
         assertEquals("Tiguan", mobileDeHomePage.getCarModel());
+        mobileDeHomePage.setCarPrice();
         assertEquals("50000", mobileDeHomePage.getCarPrice());
+        mobileDeHomePage.setCarRegistrationDateFrom();
         assertEquals("2020", mobileDeHomePage.getCarRegistrationDateFrom());
         mobileDeHomePage.clickCarSearchButton();
 
@@ -58,5 +59,4 @@ public class CarParkTest {
     public void terminateBrowser() {
         driver.close();
     }
-
 }
