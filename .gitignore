@@ -7,3 +7,4 @@ target/
 *.log
 *.jar
 chromedriver.exe
+chromedriver99.exe
